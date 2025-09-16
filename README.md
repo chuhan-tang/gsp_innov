@@ -1,5 +1,7 @@
 # Hindered Creativity? The Effects of China’s Golden Shield Project on Innovation
 
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
 **Author:** Chuhan Tang  
 
 ---
