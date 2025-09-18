@@ -6,7 +6,7 @@ rm(list = ls())
 closeAllConnections()
 
 # Set path in which the gsp_innov project is located
-path0 <- '/Users/chuhantang/Documents/Research/gsp_innov'
+path0 <- '/Users/chuhantang/Documents/Research'
 
 # Other paths
 path1 <- paste0(path0,'/gsp_innov')
