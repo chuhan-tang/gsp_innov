@@ -23,7 +23,7 @@ setwd(path_figures)
 pplot <- ggdid(pre_trend_quant) + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   labs(
-    title = "Figure 1. Dynamic Treatment Effects on Number of Patents (log)",
+    title = "Figure 1: Dynamic Treatment Effects on Number of Patents (log)",
     x = "Year",
     y = "ATT",
     caption = "Note: ATT estimates with city and year fixed effects. Error bars represent 95% confidence intervals."
@@ -37,7 +37,7 @@ ggsave("fig1.png", plot = pplot, width = 8, height = 6, dpi = 300)
 pplot <- ggdid(pre_trend_qual)+ 
   theme(axis.text.x = element_text(angle = 45, hjust = 1))+
   labs(
-    title = "Figure 2. Dynamic Treatment Effects on Proportion of Novel Patents (%)",
+    title = "Figure 2: Dynamic Treatment Effects on Proportion of Novel Patents (%)",
     x = "Year",
     y = "ATT",
     caption = "Note: ATT estimates with city and year fixed effects. Error bars represent 95% confidence intervals."
