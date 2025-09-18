@@ -30,5 +30,5 @@ codes <- c("libraries.R",
 
 setwd(path_code)
 for (code in codes) {
-  source(file.path(path_code, file), echo = TRUE, print.eval = TRUE)
+  source(file.path(path_code, code), echo = TRUE, print.eval = TRUE)
 }
