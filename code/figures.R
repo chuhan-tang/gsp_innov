@@ -25,7 +25,8 @@ pplot <- ggdid(pre_trend_quant) +
   labs(
     title = "Figure 1. Dynamic Treatment Effects on Number of Patents (log)",
     x = "Year",
-    y = "ATT"
+    y = "ATT",
+    caption = "Note: ATT estimates with city and year fixed effects. Error bars represent 95% confidence intervals."
   )
 ggsave("fig1.png", plot = pplot, width = 8, height = 6, dpi = 300)
 
@@ -38,6 +39,7 @@ pplot <- ggdid(pre_trend_qual)+
   labs(
     title = "Figure 2. Dynamic Treatment Effects on Proportion of Novel Patents (%)",
     x = "Year",
-    y = "ATT"
+    y = "ATT",
+    caption = "Note: ATT estimates with city and year fixed effects. Error bars represent 95% confidence intervals."
   )
 ggsave("fig2.png", plot = pplot, width = 8, height = 6, dpi = 300)
