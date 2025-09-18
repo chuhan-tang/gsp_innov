@@ -20,7 +20,7 @@ var_labels <- c(
   fdishare = "FDI/GDP",
   lngdp_province = "Provincial GDP (log)",
   lnpatent_count = "Number of patents (log)",
-  patent_novelshare = "Proportion of novel patents (\%)",
+  patent_novelshare = "Proportion of novel patents",
   post = "After 2005",
   treated = "GSP Phase 1 Implemented (2005)"
 )
