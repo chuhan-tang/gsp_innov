@@ -19,30 +19,28 @@ setwd(path_tables)
 
 ##### Table 1: Summary statistics
 
-# Output summary stats
+# Convert the summary stats dataframe into xtable, then tex lines
 
-print(
-  xtable(summary_stats, caption = "Table 1. Summary Statistics"),
-  type = "html",
-  file = "tab1.html",
+summary_table_tex <- print(
+  xtable(summary_stats, 
+         caption = "Summary Statistics", 
+         label = "tab:summary_stats"),
+  type = "latex",
   include.rownames = FALSE,
-  html.table.attributes = 'border="0" style="width: 50%; border-collapse: collapse;"',
   caption.placement = "top",
-  add.to.row = list(
-    pos = list(0),  # 0 = after header row
-    command = "<tr style='border-bottom: 2px solid black;'></tr>"
-  )
+  sanitize.text.function = identity,
+  print.results = FALSE
 )
 
 ##### Table 2: DiD Regression Table
 
-did_table <- etable(
+did_table_tex <- etable(
   list(
     "Number of patents (log)" = did_quant,
     "Proportion of novel patents (%)" = did_qual
   ),
   tex = TRUE,
-  title = "Table 2. Baseline DiD Regressions",
+  caption = "Baseline DiD Regressions",
   digits = 3,
   dict = c(
     "treated:post" = "Treated × Post",
@@ -51,25 +49,10 @@ did_table <- etable(
     "popugrowth" = "Population Growth",
     "year" = "Year",
     "citycode" = "City"
-  )
+  ),
+  notes = "Note: All regressions include city and year fixed effects. Standard errors are clustered at the city level."
 )
 
-did_table <-  paste0(
-  "\\documentclass[12pt]{article}\n",
-  "\\usepackage{booktabs}\n",
-  "\\usepackage[margin=1in]{geometry}\n",
-  "\\usepackage{lmodern}\n",
-  "\\usepackage{amsmath}\n",
-  "\\usepackage{float}\n",
-  "\\begin{document}\n",
-  paste(did_table, collapse = "\n"),
-  "\n\\end{document}"
-)
-
-
-# Save tex and export as pdf
-cat(did_table, file = "tab2.tex")
-latexmk("tab2.tex")
 
 ##### Table 3: Staggered DiD Regressions
 
@@ -84,15 +67,18 @@ stag_table <- data.frame(
 # Convert the dataframe into xtable, then tex lines
 
 stag_table_tex <- print(xtable(stag_table, 
-             caption = "Table 3. Staggered DiD Results", 
+             caption = "Staggered DiD Results", 
              label = "tab:stag_did"),
       type = "latex", 
       include.rownames = FALSE,
+      caption.placement = "top",
       sanitize.text.function = identity, 
       print.results = FALSE)
 
-# Wrap the tex lines with necessary latex set up
-stag_table_tex <- paste0(
+##### Outputting tables
+# Combine all tables' tex lines into one tex file, and wrap them with necessary latex set up
+
+tables_tex <- paste0(
   "\\documentclass[12pt]{article}\n",
   "\\usepackage{booktabs}\n",
   "\\usepackage[margin=1in]{geometry}\n",
@@ -100,10 +86,19 @@ stag_table_tex <- paste0(
   "\\usepackage{amsmath}\n",
   "\\usepackage{float}\n",
   "\\begin{document}\n",
+  summary_table_tex,
+  "\n\\bigskip",
+  "\\noindent\\footnotesize Note: Summary statistics are computed for available observations and show the mean, standard deviation, minimum, and maximum for each variable.\n",
+  "\n\\bigskip",
+  paste(did_table_tex, collapse = "\n"),
+  "\n\\bigskip",
   stag_table_tex,
-  "\n\\end{document}"
+  "\\vspace{20cm}\n",
+  "\\noindent\\footnotesize Note: Table 3 reports group-time Average Treatment Effects from a staggered difference-in-differences specification. Estimates are presented with standard errors and t-values. All regressions include city and year fixed effects.\n",
+  "\\end{document}"
 )
 
 # Save tex and export as pdf
-writeLines(stag_table_tex, "tab3.tex")
-latexmk("tab3.tex")
+
+cat(tables_tex, file = "tabs.tex")
+latexmk("tabs.tex")
