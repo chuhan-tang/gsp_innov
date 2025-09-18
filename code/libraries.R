@@ -6,10 +6,10 @@
 
 options(warn = -1)
 required_packages <- c("dplyr", "haven", "tidyverse", "xtable", "readxl",
-                       "ggplot2", "did", "fixest", "modelsummary")
+                       "ggplot2", "did", "fixest", "modelsummary", "tinytex")
 for (pkg in required_packages) {
-  # if (!requireNamespace(pkg, quietly = TRUE)) {
-  #  install.packages(pkg)
-  #}
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+  install.packages(pkg)
+  }
   library(pkg, character.only = TRUE)
 }
