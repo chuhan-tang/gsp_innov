@@ -1,0 +1,85 @@
+\documentclass[12pt]{article}
+\usepackage{booktabs}
+\usepackage[margin=1in]{geometry}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{float}
+\begin{document}
+% latex table generated in R 4.5.1 by xtable 1.8-4 package
+% Thu Sep 18 01:36:12 2025
+\begin{table}[ht]
+\centering
+\caption{Summary Statistics} 
+\label{tab:summary_stats}
+\begin{tabular}{lrrrrr}
+  \hline
+Variable & Observations & Mean & StdDev & Min & Max \\ 
+  \hline
+Year & 7992 & 2001.50 & 6.92 & 1990.00 & 2013.00 \\ 
+  After 2005 & 7992 & 0.38 & 0.48 & 0.00 & 1.00 \\ 
+  Population growth & 6301 & 6.36 & 4.49 & -8.90 & 68.70 \\ 
+  GDP per capita (log) & 6434 & 9.62 & 0.95 & 6.28 & 13.11 \\ 
+  FDI/GDP & 6840 & 0.02 & 0.05 & 0.00 & 1.41 \\ 
+  Provincial GDP (log) & 7992 & 8.14 & 1.33 & 3.51 & 11.04 \\ 
+  Number of patents (log) & 7992 & 4.24 & 1.90 & 0.00 & 10.58 \\ 
+  Proportion of novel patents & 7752 & 5.94 & 5.33 & 0.00 & 100.00 \\ 
+  GSP Phase 1 Implemented (2005) & 7992 & 0.09 & 0.29 & 0.00 & 1.00 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+\bigskip\noindent\footnotesize Note: Summary statistics are computed for available observations and show the mean, standard deviation, minimum, and maximum for each variable.
+
+\bigskip\begin{table}[htbp]
+   \caption{Baseline DiD Regressions}
+   \centering
+   \begin{tabular}{lcc}
+      \tabularnewline \midrule \midrule
+      Dependent Variables: & lnpatent\_count  & patent\_novelshare\\   
+      Model:               & (1)              & (2)\\  
+      \midrule
+      \emph{Variables}\\
+      Log GDP per capita   & 0.159$^{***}$    & 0.122\\   
+                           & (0.058)          & (0.274)\\   
+      FDI/GDP              & -1.45$^{**}$     & 4.53$^{**}$\\   
+                           & (0.568)          & (1.79)\\   
+      Population Growth    & -0.003           & -0.009\\   
+                           & (0.003)          & (0.024)\\   
+      Treated × Post       & 0.243$^{*}$      & -0.584\\   
+                           & (0.142)          & (0.387)\\   
+      \midrule
+      \emph{Fixed-effects}\\
+      City                 & Yes              & Yes\\  
+      Year                 & Yes              & Yes\\  
+      \midrule
+      \emph{Fit statistics}\\
+      Observations         & 6,280            & 6,273\\  
+      R$^2$                & 0.93005          & 0.25774\\  
+      Within R$^2$         & 0.03002          & 0.00199\\  
+      \midrule \midrule
+      \multicolumn{3}{l}{\emph{Clustered (City) standard-errors in parentheses}}\\
+      \multicolumn{3}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
+   \end{tabular}
+   
+   \par \raggedright 
+   Note: All regressions include city and year fixed effects. Standard errors are clustered at the city level.
+\end{table}
+\bigskip% latex table generated in R 4.5.1 by xtable 1.8-4 package
+% Thu Sep 18 01:36:12 2025
+\begin{table}[ht]
+\centering
+\caption{Staggered DiD Results} 
+\label{tab:stag_did}
+\begin{tabular}{lrr}
+  \hline
+Metric & Number.of.patents & Proportion.of.novel.patents \\ 
+  \hline
+Estimate & 0.05 & 0.53 \\ 
+  StdError & 0.18 & 0.71 \\ 
+  T-value & 0.25 & 0.75 \\ 
+   \hline
+\end{tabular}
+\end{table}
+\vspace{20cm}
+\noindent\footnotesize Note: Table 3 reports group-time Average Treatment Effects from a staggered difference-in-differences specification. Estimates are presented with standard errors and t-values. All regressions include city and year fixed effects.
+\end{document}
